@@ -393,12 +393,18 @@ const Index = () => {
             <div className="text-[#0D0E0C73] bg-gray-100 px-2 py-1 rounded flex items-center gap-x-2">
               <div className="text-black">{record.replies}</div>
               <div>
-                <Button
-                  className="border border-primary bg-secondary text-primary"
-                  size="small"
-                >
-                  +6
-                </Button>
+              <Button
+  className="border border-primary-400"
+  size="small"
+  style={{ 
+    color: '#389E0D',
+    backgroundColor: '#efffe0',
+    
+  }}
+>
+  +6
+</Button>
+
               </div>
             </div>
           </div>
