@@ -12,7 +12,7 @@ export default function ApproveModal({ open, onClose }) {
   <Button key="cancel" type="outlined" onClick={onClose}>
     Отмена
   </Button>,
-  <Button key="submit" shape="round" onClick={handleSubmit}>
+  <Button key="submit" shape="round" onClick={onClose}>
     Добавить
   </Button>,
 ]}

@@ -5,9 +5,9 @@ import { Plus, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Dropdown, Menu } from "antd";
-import { MoreOutlined } from "@ant-design/icons";
+import { MoreOutlined, SearchOutlined } from "@ant-design/icons";
 
-import CreateUserModal from "../../components/CreateUserModal";
+import CreateUserModal from "../../components/CreateUserRoleModal";
 const mockUsers = [
   {
     key: 1,
@@ -42,19 +42,42 @@ const columns = [
     render: (_, record) => {
       const menu = (
         <Menu>
-          <Menu.Item key="edit" onClick={() => alert(`Редактировать: ${record.name}`)}>
+          <Menu.Item
+            key="edit"
+            onClick={() => alert(`Редактировать: ${record.name}`)}
+          >
             Редактировать
           </Menu.Item>
-          <Menu.Item key="delete" onClick={() => alert(`Удалить: ${record.name}`)}>
+          <Menu.Item
+            key="delete"
+            onClick={() => alert(`Удалить: ${record.name}`)}
+          >
             Удалить
           </Menu.Item>
         </Menu>
       );
 
       return (
-        <Dropdown menu={menu} trigger={["click"]}>
-        <Button type="outlined" icon={<MoreOutlined className="h-5" />} />
-      </Dropdown>
+        <Dropdown
+  menu={{
+    items: [
+      {
+        key: "edit",
+        label: "Редактировать",
+        onClick: () => alert(`Редактировать: ${record.name}`),
+      },
+      {
+        key: "delete",
+        label: "Удалить",
+        onClick: () => alert(`Удалить: ${record.name}`),
+      },
+    ],
+  }}
+  trigger={["click"]}
+>
+  <Button type="outlined" icon={<MoreOutlined className="h-5" />} />
+</Dropdown>
+
       
       );
     },
@@ -91,7 +114,7 @@ const { Title } = Typography;
 export default function UsersPage() {
   const router = useRouter();
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div>
@@ -108,26 +131,30 @@ export default function UsersPage() {
         />
       </div>
 
-      <div className="w-full md:w-auto mb-4">
+      <div
+        style={{
+          width: "100%",
+        }}
+      >
         <Input
           type="search"
           placeholder="Поиск"
-          className="w-full md:w-[300px] rounded-full"
-          prefix={<Search className="text-gray-400" />}
+          style={{
+            width: "100%",
+            maxWidth: "300px",
+            borderRadius: "9999px",
+            marginBottom: "0.5rem",
+          }}
+          prefix={<SearchOutlined style={{ color: "#9CA3AF" }} />} // text-gray-400
         />
       </div>
 
-      <Table
-        columns={columns}
-        dataSource={mockUsers}
-        pagination={false}
-       
-      />
+      <Table columns={columns} dataSource={mockUsers} pagination={false} />
 
-       <CreateUserModal
-              open={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-            />
+      <CreateUserModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

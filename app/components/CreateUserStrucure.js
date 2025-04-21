@@ -14,7 +14,7 @@ const mockUsers = Array(17)
     key: index, // Ensure unique key for each user
   }));
 
-export default function CreateUserModal({ open, onClose }) {
+export default function CreateUserStrucure({ open, onClose }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 

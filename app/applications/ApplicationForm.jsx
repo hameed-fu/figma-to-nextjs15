@@ -16,9 +16,9 @@ import {
 } from "antd";
 import { LeftOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { EllipsisVertical } from "lucide-react";
-// import ReactQuill from "react-quill";
 
-// import "react-quill/dist/quill.snow.css";
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 
 const { Option } = Select;
 
@@ -344,7 +344,7 @@ export default function ApplicationForm() {
           Требования к кандидату
         </div>
         <Card className="rounded-[18px]">
-          <div className="text-gray-500 border-b mb-3">Образование</div>
+          <div className="text-gray-500 border-b border-gray-200 mb-3">Образование</div>
           <Form layout="vertical">
             <Row gutter={[16, 16]} align="bottom">
               <Col xs={24} md={12} lg={8}>
@@ -414,7 +414,7 @@ export default function ApplicationForm() {
             </Row>
 
             <div className="text-primary mb-3">Добавить образование</div>
-            <div className="text-gray-500 border-b mb-3">Опыт</div>
+            <div className="text-gray-500 border-b border-gray-200 mb-3">Опыт</div>
 
             <Row gutter={[16, 16]} align="bottom">
               <Col xs={24} md={12} lg={12}>
@@ -464,7 +464,7 @@ export default function ApplicationForm() {
             </Row>
 
             <div className="text-primary mb-3">Добавить опыт в организации</div>
-            <div className="text-gray-500 border-b mb-3">Навыки и качества</div>
+            <div className="text-gray-500 border-b border-gray-200 mb-3">Навыки и качества</div>
             <Row gutter={[16, 16]}>
               <Col xs={12} md={12} lg={24}>
                 <Form.Item label="Личные качества" name="personalQualities">
@@ -621,7 +621,7 @@ export default function ApplicationForm() {
               </Col>
             </Row>
 
-            <div className="text-gray-500 border-b mb-3">
+            <div className="text-gray-500 border-b border-gray-200 mb-3">
               Владение иностранными языками
             </div>
             <Row gutter={[16, 16]} align="bottom">
@@ -673,7 +673,7 @@ export default function ApplicationForm() {
             </Row>
 
             <div className="text-primary mb-3">Добавить язык</div>
-            <div className="text-gray-500 border-b mb-3">
+            <div className="text-gray-500 border-b border-gray-200 mb-3">
               Дополнительные требования
             </div>
 
@@ -767,7 +767,7 @@ export default function ApplicationForm() {
       <div className="rounded-[18px] p-0 border border-gray-300">
         <Card className="rounded-[18px]">
           <div>Чем предстоит заниматься</div>
-{/* 
+
           <ReactQuill
             className="rounded-lg border-2 border-primary"
             theme="snow"
@@ -780,7 +780,9 @@ export default function ApplicationForm() {
 Составление и корректировка заданий на закупку услуг, оборудования и нефтехимии для систем сбора и подготовки нефти и газа и поддержания пластового давления. 
 Внедрение нового оборудования, химических реагентов и технологий в системах сбора и подготовки нефти и газа, и поддержания пластового давления. Составление и корректировка ежегодных заявок обособленных подразделений по материально-техническому обеспечению производства в подготовке и транспорту нефти. 
 Участие в организации выполнения, контроле и учете утвержденных мероприятий, приказов, распоряжений и других руководящих документов в области деятельности отдела"
-          /> */}
+          />
+
+          
         </Card>
       </div>
     </div>

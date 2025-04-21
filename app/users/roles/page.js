@@ -1,247 +1,145 @@
 "use client";
 
-import React, { useState } from "react";
-import { Card, Button, Space, Typography, Table, Tabs, Row, Col } from "antd";
-import {
-  EditOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-  TeamOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
-import CreateUserModal from "../../components/CreateUserModal";
-import AddUsersModal from "../../components/AddUsersModal";
+import { Table, Button, Typography, Input } from "antd";
+import { ChevronDown, Cog, Plus, Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Dropdown, Menu } from "antd";
+import { MoreOutlined, SearchOutlined } from "@ant-design/icons";
 
-const { Title, Text } = Typography;
-
-const subdivisions = [
+import CreateUserRoleModal from "../../components/CreateUserRoleModal";
+const mockUsers = [
   {
-    id: 1,
-    name: "Организация 1",
-    expandable: true,
-    children: [
-      "Структурное подразделение 1",
-      "Структурное подразделение 1",
-      "Структурное подразделение 1",
-      "Структурное подразделение 1",
-    ],
-  },
-  { id: 2, name: "Подразделение 2" },
-  { id: 3, name: "Подразделение 3" },
-  { id: 4, name: "Подразделение 4", expandable: true },
-  { id: 5, name: "Подразделение 5", expandable: true },
-  { id: 6, name: "Подразделение 6", expandable: true },
-];
-
-const users = [
-  {
-    key: "1",
-    name: "Васильева Анна Андреевна",
-    position: "Инженер",
-    email: "vasia-a@gmail.com",
+    key: 1,
+    name: "Администратор ОК",
+    participants: "3",
   },
   {
-    key: "2",
-    name: "Васильева Анна Андреевна",
-    position: "Инженер",
-    email: "vasia-a@gmail.com",
+    key: 2,
+    name: "Администратор ОК",
+    participants: "12",
+  },
+  {
+    key: 3,
+    name: "Система",
+    participants: "5",
   },
 ];
 
-const Roles = () => {
-  const [expandedItems, setExpandedItems] = useState([]);
+const columns = [
+  {
+    title: "Действия",
+    key: "actions",
+    render: (_, record) => {
+      const menu = (
+        <Menu>
+          <Menu.Item
+            key="edit"
+            onClick={() => alert(`Редактировать: ${record.name}`)}
+          >
+            Редактировать
+          </Menu.Item>
+          <Menu.Item
+            key="delete"
+            onClick={() => alert(`Удалить: ${record.name}`)}
+          >
+            Удалить
+          </Menu.Item>
+        </Menu>
+      );
+
+      return (
+        <Dropdown
+          menu={{
+            items: [
+              {
+                key: "edit",
+                label: "Редактировать",
+                onClick: () => alert(`Редактировать: ${record.name}`),
+              },
+              {
+                key: "delete",
+                label: "Удалить",
+                onClick: () => alert(`Удалить: ${record.name}`),
+              },
+              {
+                key:"title",
+                label:"title",
+              }
+            ],
+          }}
+          trigger={["click"]}
+        >
+          <Button
+            className="items-center px-0"
+            shape="round"
+            size="small"
+            icon={<Cog className="h-4 w-4" />}
+          >
+            Действия <ChevronDown className="h-4 w-4" />
+          </Button>
+        </Dropdown>
+      );
+    },
+  },
+  {
+    title: "Роль",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Участники",
+    dataIndex: "participants",
+    key: "participants",
+  },
+];
+
+const { Title } = Typography;
+
+export default function Roles() {
+  const router = useRouter();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
-
-  const toggleExpand = (id) => {
-    setExpandedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
-  const tabsItems = [
-    {
-      label: "Пользователи",
-      key: "1",
-      children: (
-        <div>
-          <div className="flex justify-between items-center mb-2">
-            <span style={{ fontWeight: 500 }}>Организация 1</span>
-            <Button type="link" style={{ color: "#52c41a" }}>
-              Добавить
-            </Button>
-          </div>
-          <Table
-            dataSource={users}
-            pagination={false}
-            columns={[
-              {
-                title: "Участник",
-                dataIndex: "name",
-                key: "name",
-              },
-              {
-                title: "Должность",
-                dataIndex: "position",
-                key: "position",
-              },
-              {
-                title: "Электронная почта",
-                dataIndex: "email",
-                key: "email",
-              },
-              {
-                title: "",
-                key: "action",
-                render: (_, record) => (
-                  <Button
-                    icon={<DeleteOutlined />}
-                    shape="circle"
-                    size="small"
-                  />
-                ),
-              },
-            ]}
-          />
-        </div>
-      ),
-    },
-    {
-      label: "Роли",
-      key: "2",
-      children: <p>Здесь будут роли</p>,
-    },
-  ];
 
   return (
     <div>
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-600 mb-3">
-        Структура
-      </h1>
+      <div className="flex items-center mb-2">
+        <Title level={4} style={{ margin: 0 }}>
+          Роли
+        </Title>
+        <Button
+          shape="circle"
+          size="large"
+          className="ml-3"
+          icon={<Plus />}
+          onClick={() => setIsModalOpen(true)}
+        />
+      </div>
 
-      <Row gutter={16}>
-        {/* Left Column */}
-        <Col xs={24} md={12}>
-          <Card
-            className="bg-secondary"
-            style={{ borderRadius: 12 }}
-            styles={{ body: { paddingTop: 0 } }}
-          >
-            <div className="flex items-center m-3">
-              <Title level={4} style={{ margin: 0 }}>
-                Структурное подразделение
-              </Title>
-              <Button
-                shape="circle"
-                size="large"
-                className="ml-3"
-                icon={<PlusOutlined />}
-                onClick={() => setIsModalOpen(true)}
-              />
-            </div>
+      <div
+        style={{
+          width: "100%",
+        }}
+      >
+        <Input
+          type="search"
+          placeholder="Поиск"
+          style={{
+            width: "100%",
+            maxWidth: "300px",
+            borderRadius: "9999px",
+            marginBottom: "0.5rem",
+          }}
+          prefix={<SearchOutlined style={{ color: "#9CA3AF" }} />} // text-gray-400
+        />
+      </div>
 
-            {subdivisions.map((item) => {
-              const isExpanded = expandedItems.includes(item.id);
+      <Table columns={columns} dataSource={mockUsers} pagination={false} />
 
-              return (
-                <Card
-                  key={item.id}
-                  size="small"
-                  styles={{
-                    body: {
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      flexWrap: "wrap",
-                    },
-                  }}
-                  style={{ borderColor: "#bbf7d0", borderRadius: 10 }}
-                >
-                  <div style={{ width: "100%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Space
-                        onClick={() => item.expandable && toggleExpand(item.id)}
-                        style={{
-                          cursor: item.expandable ? "pointer" : "default",
-                        }}
-                      >
-                        {item.expandable && (
-                          <RightOutlined
-                            rotate={isExpanded ? 90 : 0}
-                            style={{ fontSize: 12 }}
-                          />
-                        )}
-                        <Text>{item.name}</Text>
-                      </Space>
-
-                      <Space>
-                        <Button
-                          icon={<EditOutlined />}
-                          shape="circle"
-                          size="small"
-                          onClick={() => setIsModalOpen(true)}
-                        />
-                        <Button
-                          icon={<PlusOutlined />}
-                          shape="circle"
-                          size="small"
-                          onClick={() => setIsAddUserModalOpen(true)}
-                        />
-                        <Button
-                          icon={<TeamOutlined />}
-                          shape="circle"
-                          size="small"
-                          onClick={() => setIsAddUserModalOpen(true)}
-                        />
-                        <Button
-                          icon={<DeleteOutlined />}
-                          shape="circle"
-                          size="small"
-                        />
-                      </Space>
-                    </div>
-
-                    {item.children && isExpanded && (
-                      <div style={{ paddingLeft: 22, marginTop: 8 }}>
-                        {item.children.map((child, idx) => (
-                          <div key={idx} style={{ marginBottom: 4 }}>
-                            {child}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </Card>
-              );
-            })}
-          </Card>
-        </Col>
-
-        {/* Right Column */}
-        <Col xs={24} md={12}>
-          <Card style={{ borderRadius: 12 }}>
-            <Tabs defaultActiveKey="1" items={tabsItems} />
-          </Card>
-        </Col>
-      </Row>
-
-      <CreateUserModal
+      <CreateUserRoleModal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-
-      <AddUsersModal
-        open={isAddUserModalOpen}
-        onClose={() => setIsAddUserModalOpen(false)}
-      />
     </div>
   );
-};
-
-export default Roles;
+}

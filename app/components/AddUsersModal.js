@@ -47,7 +47,7 @@ export default function AddUsersModal({ open, onClose }) {
       title="Добавить участника"
       width={600}
       footer={[
-        <Button type="outlined" onClick={onClose}>
+        <Button key="cancel" type="outlined" onClick={onClose}>
           Отмена
         </Button>,
         <Button key="submit" shape="round" onClick={handleSubmit}>

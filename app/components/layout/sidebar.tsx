@@ -46,6 +46,8 @@ const sidebarItems = [
     icon: <UsersRound className="h-4 w-4" />,
     key: "users",
     children: [
+      
+      { name: "Структура", key: "structure" },
       { name: "Роли", key: "roles" },
       { name: "Пользователи", key: "users" },
       { name: "Option 2", key: "list" },

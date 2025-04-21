@@ -258,7 +258,7 @@ const Index = () => {
         <div className="flex justify-between items-center">
           <div>
             <Dropdown
-              overlayClassName="bg-primary"
+              
               menu={{
                 items: record.options.map((option) => ({
                   key: option.id,
@@ -504,23 +504,22 @@ const Index = () => {
       </div>
 
       <div
-  style={{
-    width: '100%',
-  }}
->
-  <Input
-    type="search"
-    placeholder="Поиск"
-    style={{
-      width: '100%',
-      maxWidth: '300px',
-      borderRadius: '9999px',
-      marginBottom: '0.5rem',
-    }}
-    prefix={<SearchOutlined style={{ color: '#9CA3AF' }} />} // text-gray-400
-  />
-</div>
-
+        style={{
+          width: "100%",
+        }}
+      >
+        <Input
+          type="search"
+          placeholder="Поиск"
+          style={{
+            width: "100%",
+            maxWidth: "300px",
+            borderRadius: "9999px",
+            marginBottom: "0.5rem",
+          }}
+          prefix={<SearchOutlined style={{ color: "#9CA3AF" }} />} // text-gray-400
+        />
+      </div>
 
       <div className="rounded-2xl overflow-hidden shadow-md border border-gray-200">
         <Table

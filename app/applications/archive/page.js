@@ -255,7 +255,7 @@ const Index = () => {
             <div className="flex justify-between items-center">
               <div>
                 <Dropdown
-                  overlayClassName="bg-primary"
+                  
                   menu={{
                     items: record.options.map((option) => ({
                       key: option.id,
