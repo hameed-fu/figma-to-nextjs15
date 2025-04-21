@@ -12,6 +12,7 @@ import {
   Col,
   Checkbox,
   Divider,
+  Space,
 } from "antd";
 import { LeftOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { EllipsisVertical } from "lucide-react";
@@ -227,17 +228,17 @@ export default function ApplicationForm() {
             <Row gutter={[16, 16]}>
               {/* Income Range */}
               <Col xs={24} md={12} lg={12}>
-                <Form.Item label="Уровень дохода">
-                  <Input.Group compact>
-                    <Input style={{ width: "40%" }} placeholder="от" />
-                    <Input style={{ width: "40%" }} placeholder="до" />
-                    <Select defaultValue="BYN" style={{ width: "20%" }}>
-                      <Select.Option value="BYN">BYN</Select.Option>
-                      <Select.Option value="USD">USD</Select.Option>
-                    </Select>
-                  </Input.Group>
-                </Form.Item>
-              </Col>
+  <Form.Item label="Уровень дохода">
+    <Space.Compact style={{ width: '100%' }}>
+      <Input style={{ width: '40%' }} placeholder="от" />
+      <Input style={{ width: '40%' }} placeholder="до" />
+      <Select defaultValue="BYN" style={{ width: '20%' }}>
+        <Select.Option value="BYN">BYN</Select.Option>
+        <Select.Option value="USD">USD</Select.Option>
+      </Select>
+    </Space.Compact>
+  </Form.Item>
+</Col>
 
               {/* Work Format */}
               <Col xs={24} md={12} lg={12}>

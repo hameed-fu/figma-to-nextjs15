@@ -9,16 +9,14 @@ export default function ApproveModal({ open, onClose }) {
       open={open}
       onCancel={onClose}
       footer={[
-        <Button key="cancel" type="outlined" onClick={onClose} shape="round">
-          Отмена
-        </Button>,
-        <Button key="submit"  shape="round" onClick={() => {
-          
-          onClose();
-        }}>
-          Отправить
-        </Button>,
-      ]}
+  <Button key="cancel" type="outlined" onClick={onClose}>
+    Отмена
+  </Button>,
+  <Button key="submit" shape="round" onClick={handleSubmit}>
+    Добавить
+  </Button>,
+]}
+
     >
       <p>Вы уверены, что хотите отправить заявку на согласование?</p>
     </Modal>

@@ -64,17 +64,19 @@ export default function CreateUserModal({ open, onClose }) {
       title="Добавить пользователя"
       width={800}
       footer={[
-        <Button type="outlined" onClick={onClose}>
+        <Button key="cancel" type="outlined" onClick={onClose}>
           Отмена
         </Button>,
         <Button key="submit" shape="round" onClick={handleSubmit}>
           Добавить
         </Button>,
       ]}
+      
     >
       <Input
         placeholder="Поиск"
         className="mb-4 rounded-full"
+        style={{ marginBottom:"10px" }}
         value={searchTerm}
         type="search"
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -86,7 +88,7 @@ export default function CreateUserModal({ open, onClose }) {
         dataSource={filteredData}
         pagination={false}
         scroll={{ y: 700 }}
-        rowKey="key" // This ensures that each row has a unique key prop
+        rowKey="key"  
       />
     </Modal>
   );

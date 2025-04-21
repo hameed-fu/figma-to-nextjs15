@@ -469,8 +469,15 @@ const Index = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <div className="flex items-center">
           <h1 className="text-2xl sm:text-3xl font-bold">Черновики</h1>
-          <Button variant="outline" className="ml-3 rounded-full p-2">
-            <Plus className="h-5 w-4" />
+           <Button
+            variant="outline"
+            style={{
+              marginLeft: "0.75rem",
+              borderRadius: "9999px",
+              padding: "0.5rem",
+            }}
+          >
+            <Plus style={{ height: "1.25rem", width: "1rem" }} />
           </Button>
         </div>
       </div>

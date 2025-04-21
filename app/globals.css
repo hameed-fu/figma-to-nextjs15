@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
-.bg-primary{
-    background-color: #389E0D;
-}
-.bg-secondary{
-    background-color: #efffe0;
+.bg-primary {
+  background-color: #389E0D;
 }
 
-.text-primary{
-    background-color: #389E0D;
-}
-.text-secondary{
-    background-color: #efffe0;
+.bg-secondary {
+  background-color: #efffe0;
 }
 
-.rounded-full{
-    border-radius: 25px;
+.text-primary {
+  color: #389E0D;
 }
 
- .border-pink-400 {
-    border: 1px solid #f472b6;
-  }
-  
-  .bg-pink-50 {
-    background-color: #fef2f2; 
-  }
-  
-  .text-pink-400 {
-    color: #f472b6;  
-  }
-  
+.text-secondary {
+  color: #efffe0;
+}
 
+.rounded-full {
+  border-radius: 25px;
+}
+
+.border-pink-400 {
+  border: 1px solid #D3ADF7;
+}
+
+.bg-pink-50 {
+  background-color: #f2e4ff;
+}
+
+.text-pink-400 {
+  color: #a047f3;
+}

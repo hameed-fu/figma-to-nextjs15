@@ -217,7 +217,7 @@ const mockData = [
 
 const statusColors = {
   Высокий: "pink",
-  Pending: "blue",
+  Pending: "yellow",
   Active: "orange",
 };
 
@@ -277,7 +277,7 @@ const Index = () => {
           <div>{text}</div>
         </div>
       ),
-    },    
+    },
     {
       title: "Информация",
       key: "info",
@@ -287,14 +287,14 @@ const Index = () => {
 
         return (
           <div className="flex flex-col space-y-2">
-            <Tooltip title={name}   >  
+            <Tooltip title={name}>
               <Link href={`/applications/detail`}>
                 <span className="font-bold text-gray-600 hover:underline cursor-pointer">
                   {name}
                 </span>
               </Link>
             </Tooltip>
-        
+
             <div className="flex flex-row space-x-4 text-sm text-gray-500">
               <div>{location}</div>
               <div>
@@ -304,7 +304,7 @@ const Index = () => {
                     color: "#eb2f96",
                     border: "1px solid #eb2f96",
                     padding: "0 6px",
-                    borderRadius: "4px",
+                    borderRadius: "10px",
                   }}
                 >
                   {status}
@@ -393,18 +393,16 @@ const Index = () => {
             <div className="text-[#0D0E0C73] bg-gray-100 px-2 py-1 rounded flex items-center gap-x-2">
               <div className="text-black">{record.replies}</div>
               <div>
-              <Button
-  className="border border-primary-400"
-  size="small"
-  style={{ 
-    color: '#389E0D',
-    backgroundColor: '#efffe0',
-    
-  }}
->
-  +6
-</Button>
-
+                <Button
+                  className="border border-primary-400"
+                  size="small"
+                  style={{
+                    color: "#389E0D",
+                    backgroundColor: "#efffe0",
+                  }}
+                >
+                  +6
+                </Button>
               </div>
             </div>
           </div>
@@ -468,23 +466,61 @@ const Index = () => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-        <div className="flex items-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-green">Активные</h1>
-          <Button variant="outline" className="ml-3 rounded-full p-2">
-            <Plus className="h-5 w-4" />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          marginBottom: "1.5rem",
+          gap: "1rem",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "1.5rem", // text-2xl
+              fontWeight: "bold",
+            }}
+          >
+            Активные
+          </h1>
+          <Button
+            variant="outline"
+            style={{
+              marginLeft: "0.75rem",
+              borderRadius: "9999px",
+              padding: "0.5rem",
+            }}
+          >
+            <Plus style={{ height: "1.25rem", width: "1rem" }} />
           </Button>
         </div>
       </div>
-      <div className="w-full md:w-auto">
-        <Input
-          type="search"
-          placeholder="Поиск"
-          className="w-full md:w-[300px] rounded-full mb-2"
-          
-          prefix={<SearchOutlined className="text-gray-400" />}
-        />
-      </div>
+
+      <div
+  style={{
+    width: '100%',
+  }}
+>
+  <Input
+    type="search"
+    placeholder="Поиск"
+    style={{
+      width: '100%',
+      maxWidth: '300px',
+      borderRadius: '9999px',
+      marginBottom: '0.5rem',
+    }}
+    prefix={<SearchOutlined style={{ color: '#9CA3AF' }} />} // text-gray-400
+  />
+</div>
+
 
       <div className="rounded-2xl overflow-hidden shadow-md border border-gray-200">
         <Table

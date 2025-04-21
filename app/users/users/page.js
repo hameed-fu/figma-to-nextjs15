@@ -52,9 +52,10 @@ const columns = [
       );
 
       return (
-        <Dropdown overlay={menu} trigger={["click"]}>
-          <Button type="outlined" icon={<MoreOutlined className="h-5" />}  />
-        </Dropdown>
+        <Dropdown menu={menu} trigger={["click"]}>
+        <Button type="outlined" icon={<MoreOutlined className="h-5" />} />
+      </Dropdown>
+      
       );
     },
   },

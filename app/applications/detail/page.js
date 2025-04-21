@@ -19,11 +19,11 @@ import {
 import { LeftOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
-import RouteModal from "@/components/RouteModal";
-import PrintModal from "@/components/PrintModal";
-import DownloadModal from "@/components/DownloadModal";
-import DeleteModal from "@/components/DeleteModal";
-import ApproveModal from "@/components/ApproveModal";
+import RouteModal from "../../components/RouteModal";
+import PrintModal from "../../components/PrintModal";
+import DownloadModal from "../../components/DownloadModal";
+import DeleteModal from "../../components/DeleteModal";
+import ApproveModal from "../../components/ApproveModal";
 
 export default function DetailPage({ params }) {
   const { id } = params;
@@ -197,7 +197,7 @@ export default function DetailPage({ params }) {
           </Row>
         </Card>
 
-        <Row gutter={16} className="mt-3">
+        <Row gutter={16} className="mt-3" >
           <Col span={12} className="h-full">
             <Card
               style={{ minHeight: "130px" }}
@@ -264,10 +264,10 @@ export default function DetailPage({ params }) {
           </Col>
         </Row>
 
-        <Card className="mt-4">
+        <Card className="mt-4" style={{ marginTop:'10px' }}>
           <Row justify="space-between" align="middle">
             <Col>
-              <p strong>Публикация</p>
+            Публикация
             </Col>
             <Col>
               <Button className="p-0 h-auto border-none text-gray-400">
@@ -485,7 +485,7 @@ export default function DetailPage({ params }) {
         <Card className="mt-4">
           <Row justify="space-between" align="middle">
             <Col>
-              <p strong>История</p>
+            История
             </Col>
             <Col>
               <Button className="p-0 h-auto border-none text-gray-400">

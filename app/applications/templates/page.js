@@ -468,19 +468,36 @@ const Index = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <div className="flex items-center">
           <h1 className="text-2xl sm:text-3xl font-bold">Шаблоны</h1>
-          <Button variant="outline" className="ml-3 rounded-full p-2">
-            <Plus className="h-5 w-4" />
+           <Button
+            variant="outline"
+            style={{
+              marginLeft: "0.75rem",
+              borderRadius: "9999px",
+              padding: "0.5rem",
+            }}
+          >
+            <Plus style={{ height: "1.25rem", width: "1rem" }} />
           </Button>
         </div>
       </div>
-      <div className="w-full md:w-auto">
-        <Input
-          type="search"
-          placeholder="Поиск"
-          className="w-full md:w-[300px] rounded-full mb-2"
-          prefix={<SearchOutlined className="text-gray-400" />}
-        />
-      </div>
+      <div
+  style={{
+    width: '100%',
+  }}
+>
+  <Input
+    type="search"
+    placeholder="Поиск"
+    style={{
+      width: '100%',
+      maxWidth: '300px',
+      borderRadius: '9999px',
+      marginBottom: '0.5rem',
+    }}
+    prefix={<SearchOutlined style={{ color: '#9CA3AF' }} />} // text-gray-400
+  />
+</div>
+
      <div className="rounded-2xl overflow-hidden shadow-md border border-gray-200">
              <Table
                columns={columns}
