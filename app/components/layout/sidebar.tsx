@@ -14,6 +14,8 @@ import {
 import { IdcardOutlined } from "@ant-design/icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import useIsMobile from "../../hooks/useIsMobile";  
+import "./Sidebar.css";  
 
 const sidebarItems = [
   {
@@ -46,7 +48,6 @@ const sidebarItems = [
     icon: <UsersRound className="h-4 w-4" />,
     key: "users",
     children: [
-      
       { name: "Структура", key: "structure" },
       { name: "Роли", key: "roles" },
       { name: "Пользователи", key: "users" },
@@ -68,9 +69,14 @@ const sidebarItems = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+  const isMobile = useIsMobile();
   const [openKeys, setOpenKeys] = useState<string[]>(["applications"]);
   const [selectedKey, setSelectedKey] = useState<string>("applications/");
 
@@ -107,73 +113,45 @@ const Sidebar: React.FC = () => {
 
   return (
     <Sider
-    width={260}
-    collapsible
-    collapsed={collapsed}
-    trigger={null}
-    style={{
-      background: "#fff",
-      height: "100vh",
-      position: "fixed",
-      left: 0,
-      top: 0,
-      display: "flex",
-      flexDirection: "column",
-    }}
-  >
-    {/* Top Logo / Header */}
-    <div
-      style={{
-        height: 64,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontWeight: 600,
-        fontSize: "1.125rem",
-        opacity: collapsed ? 0 : 1,
-        transition: "opacity 0.3s",
-        whiteSpace: "nowrap",
-      }}
+      width={260}
+      collapsible
+      collapsed={!isOpen}
+      trigger={null}
+      className={`custom-sidebar transition-all duration-300 ${isMobile ? 'fixed' : ''}`}
+      style={isMobile ? { left: isOpen ? 0 : '-100%' } : {}}
     >
-      Профессионалы
-    </div>
-  
-    {/* Scrollable Menu Section */}
-    <div style={{ flex: 1, overflowY: "auto",  height: "100vh", }}>
-      <Menu
-        mode="inline"
-        openKeys={openKeys}
-        selectedKeys={[selectedKey]}
-        onOpenChange={onOpenChange}
-        onClick={onClick}
-        items={items}
-        style={{ borderRight: 0 }}
-      />
-    </div>
-  
-    {/* Bottom Toggle Button */}
-    <div
-      style={{
-        padding: "12px",
-        borderTop: "1px solid #f0f0f0",
-        textAlign: "center",
-      }}
-    >
-      <Button
-        type="text"
-        onClick={() => setCollapsed(!collapsed)}
-        icon={
-          <ListCollapse
-            className={`h-5 w-5 text-gray-700 transition-transform duration-200 ${
-              collapsed ? "rotate-180" : ""
-            }`}
-          />
-        }
-      />
-    </div>
-  </Sider>
-  
+      <div className="sidebar-header">
+        Профессионалы
+      </div>
+
+      <div className="sidebar-menu">
+        <Menu
+          mode="inline"
+          openKeys={openKeys}
+          selectedKeys={[selectedKey]}
+          onOpenChange={onOpenChange}
+          onClick={onClick}
+          items={items}
+          style={{ borderRight: 0 }}
+        />
+      </div>
+
+      <div className="sidebar-footer">
+        <Button
+          type="text"
+          onClick={() => setIsOpen(!isOpen)}
+          icon={
+            <ListCollapse
+              className={`h-5 w-5 text-gray-700 transition-transform duration-200 ${
+                !isOpen ? "rotate-180" : ""
+              }`}
+            />
+          }
+        />
+      </div>
+    </Sider>
   );
 };
+
 
 export default Sidebar;

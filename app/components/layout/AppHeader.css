@@ -1,0 +1,49 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: #f5f5f5;
+  }
+  
+  .left-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .right-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .notification-btn {
+    border: 1px solid #4b5563;
+    border-radius: 999px;
+    background: white;
+  }
+  
+  .profile-wrapper {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 999px;
+    padding: 4px 8px;
+  }
+  
+  .dropdown-btn {
+    border: none;
+  }
+  
+  /* Hide sidebar toggle on large screens (>= 1024px) */
+  .sidebar-toggle {
+    display: block;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .sidebar-toggle {
+      display: none;
+    }
+  }
+  
