@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
-import { Edit, Grid, Route, UsersRound } from "lucide-react";
+import { ChevronLeft, ChevronRight, Edit, Grid, ListCollapse, Route, UsersRound } from "lucide-react";
 import { IdcardOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -75,44 +75,73 @@ const Sidebar: React.FC = () => {
 
   return (
     <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}
-      width={240}
+    collapsible
+    collapsed={collapsed}
+    onCollapse={(value) => setCollapsed(value)}
+    width={240}
+    theme="light"
+    style={{
+      overflow: "auto",
+      height: "100vh",
+      position: "sticky",
+      top: 0,
+      left: 0,
+      background: "#fff",
+      boxShadow: "2px 0 6px rgba(0, 0, 0, 0.05)",
+      zIndex: 10,
+    }}
+    trigger={null} // Disable default trigger
+  >
+    <div
+      className="sidebar-header-logo"
       style={{
-        overflow: "auto",
-        height: "100vh",
-        position: "sticky",
-        top: 0,
-        left: 0,
-        background: "#fff",
-        boxShadow: "2px 0 6px rgba(0, 0, 0, 0.05)",
-        zIndex: 10,
+        height: 64,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: collapsed ? "center" : "start",
+        paddingLeft: collapsed ? 0 : 20,
+        fontWeight: "bold",
+        fontSize: 18,
+        borderBottom: "1px solid #f0f0f0",
       }}
     >
-      <div
-        className="sidebar-header-logo"
-        style={{
-          height: 64,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: collapsed ? "center" : "start",
-          paddingLeft: collapsed ? 0 : 20,
-          fontWeight: "bold",
-          fontSize: 18,
-          borderBottom: "1px solid #f0f0f0",
-        }}
-      >
-        {collapsed ? "ПР" : "Профессионалы"}
-      </div>
+      {collapsed ? "ПР" : "Профессионалы"}
+    </div>
+  
+    <Menu
+      theme="light"
+      defaultSelectedKeys={["applications/active"]}
+      mode="inline"
+      items={items}
+    />
+  
+  <div
+  onClick={() => setCollapsed(!collapsed)}
+  style={{
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 48,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "start",
+    backgroundColor: "#fff",
+    borderTop: "1px solid #f0f0f0",
+    cursor: "pointer",
+    paddingLeft:'4px'
+  }}
+>
 
-      <Menu
-        theme="light"
-        defaultSelectedKeys={["applications/active"]}
-        mode="inline"
-        items={items}
-      />
-    </Sider>
+  
+  {collapsed ? (
+    <ListCollapse className="w-5 h-5 text-black" />
+  ) : (
+    <ListCollapse className="w-5 h-5 text-black rotate-180" />
+  )}
+</div>
+
+  </Sider>
+  
   );
 };
 
