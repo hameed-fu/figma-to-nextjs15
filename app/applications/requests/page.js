@@ -497,6 +497,7 @@ const Index = () => {
           setFilterConfig(filters);
         }}
         pagination={false}
+    scroll={{ x: "max-content" }} 
         rowClassName={(record, index) =>
           index === 1 || index === 4 ? "bg-[#FFF1F0]" : ""
         }

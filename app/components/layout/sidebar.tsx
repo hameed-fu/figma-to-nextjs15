@@ -1,23 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Menu, Divider, Button } from "antd";
+import React, { useState } from "react";
+import { Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
-import Sider from "antd/lib/layout/Sider";
-import {
-  Edit,
-  Grid,
-  ListCollapse,
-  Route,
-  UsersRound,
-} from "lucide-react";
+import { Edit, Grid, Route, UsersRound } from "lucide-react";
 import { IdcardOutlined } from "@ant-design/icons";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import useIsMobile from "../../hooks/useIsMobile";  
-import "./Sidebar.css";  
 
-const sidebarItems = [
+const { Sider } = Layout;
+
+const rawItems = [
   {
     name: "Заявки",
     icon: <Edit className="h-4 w-4" />,
@@ -54,7 +46,6 @@ const sidebarItems = [
       { name: "Option 2", key: "list" },
     ],
   },
-  { type: "divider" },
   {
     name: "Справочник",
     icon: <Grid className="h-4 w-4" />,
@@ -69,89 +60,60 @@ const sidebarItems = [
   },
 ];
 
-interface SidebarProps {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}
+const Sidebar: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(false);
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
-  const pathname = usePathname();
-  const isMobile = useIsMobile();
-  const [openKeys, setOpenKeys] = useState<string[]>(["applications"]);
-  const [selectedKey, setSelectedKey] = useState<string>("applications/");
-
-  useEffect(() => {
-    const cleanedPath = pathname.replace(/^\/+/, "");
-    setSelectedKey(cleanedPath);
-    const mainKey = cleanedPath.split("/")[0];
-    if (mainKey) setOpenKeys([mainKey]);
-  }, [pathname]);
-
-  const onOpenChange = (keys: string[]) => setOpenKeys(keys);
-  const onClick: MenuProps["onClick"] = (e) => setSelectedKey(e.key);
-
-  const items: MenuProps["items"] = sidebarItems.map((item, index) => {
-    if (item.type === "divider") {
-      return {
-        type: "group",
-        key: `divider-${index}`,
-        label: <Divider style={{ margin: "8px 0" }} />,
-      };
-    }
-
-    return {
-      key: item.key!,
-      icon: item.icon,
-      label: item.name,
-      children:
-        item.children?.map((child) => ({
-          key: `${item.key}/${child.key}`,
-          label: <Link href={`/${item.key}/${child.key}`}>{child.name}</Link>,
-        })) ?? [],
-    };
-  });
+  const items: MenuProps["items"] = rawItems.map((item) => ({
+    key: item.key,
+    icon: item.icon,
+    label: item.name,
+    children: item.children?.map((child) => ({
+      key: `${item.key}/${child.key}`,
+      label: <Link href={`/${item.key}/${child.key}`}>{child.name}</Link>,
+    })),
+  }));
 
   return (
     <Sider
-      width={260}
       collapsible
-      collapsed={!isOpen}
-      trigger={null}
-      className={`custom-sidebar transition-all duration-300 ${isMobile ? 'fixed' : ''}`}
-      style={isMobile ? { left: isOpen ? 0 : '-100%' } : {}}
+      collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
+      width={240}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        left: 0,
+        background: "#fff",
+        boxShadow: "2px 0 6px rgba(0, 0, 0, 0.05)",
+        zIndex: 10,
+      }}
     >
-      <div className="sidebar-header">
-        Профессионалы
+      <div
+        className="sidebar-header-logo"
+        style={{
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: collapsed ? "center" : "start",
+          paddingLeft: collapsed ? 0 : 20,
+          fontWeight: "bold",
+          fontSize: 18,
+          borderBottom: "1px solid #f0f0f0",
+        }}
+      >
+        {collapsed ? "ПР" : "Профессионалы"}
       </div>
 
-      <div className="sidebar-menu">
-        <Menu
-          mode="inline"
-          openKeys={openKeys}
-          selectedKeys={[selectedKey]}
-          onOpenChange={onOpenChange}
-          onClick={onClick}
-          items={items}
-          style={{ borderRight: 0 }}
-        />
-      </div>
-
-      <div className="sidebar-footer">
-        <Button
-          type="text"
-          onClick={() => setIsOpen(!isOpen)}
-          icon={
-            <ListCollapse
-              className={`h-5 w-5 text-gray-700 transition-transform duration-200 ${
-                !isOpen ? "rotate-180" : ""
-              }`}
-            />
-          }
-        />
-      </div>
+      <Menu
+        theme="light"
+        defaultSelectedKeys={["applications/active"]}
+        mode="inline"
+        items={items}
+      />
     </Sider>
   );
 };
-
 
 export default Sidebar;

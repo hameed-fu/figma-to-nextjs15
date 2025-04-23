@@ -28,20 +28,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   return (
     <Header className="app-header">
       <div className="left-header">
-        {/* <Button
-          type="text"
-          icon={
-            isSidebarOpen ? (
-              <MenuFoldOutlined style={{ fontSize: 20 }} />
-            ) : (
-              <MenuUnfoldOutlined style={{ fontSize: 20 }} />
-            )
-          }
-          onClick={() => {
-            console.log("Sidebar Open State Before Toggle:", isSidebarOpen);
-            setIsSidebarOpen(!isSidebarOpen);
-          }}
-        /> */}
+      
       </div>
 
       <div className="right-header">

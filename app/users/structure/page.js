@@ -74,6 +74,7 @@ const Structure = () => {
           <Table
             dataSource={users}
             pagination={false}
+    scroll={{ x: "max-content" }} 
             columns={[
               {
                 title: "Участник",

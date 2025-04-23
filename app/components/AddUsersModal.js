@@ -68,6 +68,7 @@ export default function AddUsersModal({ open, onClose }) {
         columns={columns}
         dataSource={filteredData}
         pagination={false}
+    scroll={{ x: "max-content" }} 
         
       />
     </Modal>

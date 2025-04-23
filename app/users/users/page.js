@@ -149,7 +149,8 @@ export default function UsersPage() {
         />
       </div>
 
-      <Table columns={columns} dataSource={mockUsers} pagination={false} />
+      <Table columns={columns} dataSource={mockUsers} pagination={false}
+    scroll={{ x: "max-content" }}  />
 
       <CreateUserModal
         open={isModalOpen}

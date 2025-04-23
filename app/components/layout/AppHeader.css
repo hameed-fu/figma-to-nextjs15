@@ -40,10 +40,22 @@
   .sidebar-toggle {
     display: block;
   }
+
+  .sidebar-header{
+    font-size: 20px;
+    font-weight: bold;
+  }
   
   @media screen and (min-width: 1024px) {
     .sidebar-toggle {
       display: none;
     }
   }
+
+  @media (max-width: 768px) {
+    .sidebar-header {
+      display: none;
+    }
+  }
+  
   

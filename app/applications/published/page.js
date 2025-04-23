@@ -508,6 +508,7 @@ const Index = () => {
                   setFilterConfig(filters);
                 }}
                 pagination={false}
+    scroll={{ x: "max-content" }} 
                 className="rounded-2xl"
               />
             </div>

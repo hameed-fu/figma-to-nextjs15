@@ -134,7 +134,8 @@ export default function Roles() {
         />
       </div>
 
-      <Table columns={columns} dataSource={mockUsers} pagination={false} />
+      <Table columns={columns} dataSource={mockUsers} pagination={false}
+    scroll={{ x: "max-content" }}  />
 
       <CreateUserRoleModal
         open={isModalOpen}
