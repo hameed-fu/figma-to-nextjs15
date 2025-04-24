@@ -15,10 +15,7 @@ interface AppHeaderProps {
   setIsSidebarOpen: (open: boolean) => void;
 }
 
-const AppHeader: React.FC<AppHeaderProps> = ({
-  isSidebarOpen,
-  setIsSidebarOpen,
-}) => {
+const AppHeader: React.FC = () => {
   const menuItems = [
     { key: "1", label: "Profile" },
     { key: "2", label: "Settings" },

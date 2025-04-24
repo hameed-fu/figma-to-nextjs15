@@ -87,8 +87,8 @@ export default function CreateUserStrucure({ open, onClose }) {
         columns={columns}
         dataSource={filteredData}
         pagination={false}
-    scroll={{ x: "max-content" }} 
-        scroll={{ y: 700 }}
+        scroll={{ x: "max-content" }} 
+        
         rowKey="key"  
       />
     </Modal>

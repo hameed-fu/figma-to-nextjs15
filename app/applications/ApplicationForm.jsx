@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   Form,
@@ -16,9 +16,13 @@ import {
 } from "antd";
 import { LeftOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { EllipsisVertical } from "lucide-react";
+import dynamic from "next/dynamic";
+import "react-quill-new/dist/quill.snow.css";
 
-import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css';
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+
+
+
 
 const { Option } = Select;
 
@@ -59,11 +63,19 @@ const vacancyReasons = [
 ];
 
 export default function ApplicationForm() {
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
   return (
     <div className="min-h-screen w-full px-2 sm:px-4">
       {/* Top nav */}
       <div className="flex items-center text-sm text-gray-500 cursor-pointer space-x-2 mb-4">
-        <Button type="primary" ghost className="p-0 h-auto border-none">
+        <Button type="outlined" ghost className="p-0 h-auto border-none text-primary">
           <LeftOutlined style={{ fontSize: "18px" }} />
         </Button>
         <span className="text-black">Вернуться в черновики</span>
