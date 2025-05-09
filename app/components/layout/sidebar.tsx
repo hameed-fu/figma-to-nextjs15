@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
-import { ChevronLeft, ChevronRight, Edit, Grid, ListCollapse, Route, UsersRound } from "lucide-react";
+import { ChevronLeft, ChevronRight, Edit, Grid, ListCollapse, Route, User, UsersRound } from "lucide-react";
 import { IdcardOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -58,6 +58,12 @@ const rawItems = [
     key: "new-term",
     children: [],
   },
+  {
+    name: "Личный кабинет",
+    icon: <User />,
+    key: "personal-account",
+    
+  },
 ];
 
 const Sidebar: React.FC = () => {
@@ -66,12 +72,17 @@ const Sidebar: React.FC = () => {
   const items: MenuProps["items"] = rawItems.map((item) => ({
     key: item.key,
     icon: item.icon,
-    label: item.name,
-    children: item.children?.map((child) => ({
-      key: `${item.key}/${child.key}`,
-      label: <Link href={`/${item.key}/${child.key}`}>{child.name}</Link>,
-    })),
+    label: item.children && item.children.length > 0
+      ? item.name
+      : <Link href={`/${item.key}`}>{item.name}</Link>,
+    children: item.children && item.children.length > 0
+      ? item.children.map((child) => ({
+          key: `${item.key}/${child.key}`,
+          label: <Link href={`/${item.key}/${child.key}`}>{child.name}</Link>,
+        }))
+      : undefined,
   }));
+  
 
   return (
     <Sider
@@ -90,7 +101,7 @@ const Sidebar: React.FC = () => {
       boxShadow: "2px 0 6px rgba(0, 0, 0, 0.05)",
       zIndex: 10,
     }}
-    trigger={null} // Disable default trigger
+    trigger={null}  
   >
     <div
       className="sidebar-header-logo"
