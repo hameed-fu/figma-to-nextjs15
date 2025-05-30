@@ -21,9 +21,6 @@ import "react-quill-new/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
-
-
-
 const { Option } = Select;
 
 // Sample options
@@ -63,7 +60,6 @@ const vacancyReasons = [
 ];
 
 export default function ApplicationForm() {
-
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -75,7 +71,11 @@ export default function ApplicationForm() {
     <div className="min-h-screen w-full px-2 sm:px-4">
       {/* Top nav */}
       <div className="flex items-center text-sm text-gray-500 cursor-pointer space-x-2 mb-4">
-        <Button type="outlined" ghost className="p-0 h-auto border-none text-primary">
+        <Button
+          type="outlined"
+          ghost
+          className="p-0 h-auto border-none text-primary"
+        >
           <LeftOutlined style={{ fontSize: "18px" }} />
         </Button>
         <span className="text-black">Вернуться в черновики</span>
@@ -240,17 +240,17 @@ export default function ApplicationForm() {
             <Row gutter={[16, 16]}>
               {/* Income Range */}
               <Col xs={24} md={12} lg={12}>
-  <Form.Item label="Уровень дохода">
-    <Space.Compact style={{ width: '100%' }}>
-      <Input style={{ width: '40%' }} placeholder="от" />
-      <Input style={{ width: '40%' }} placeholder="до" />
-      <Select defaultValue="BYN" style={{ width: '20%' }}>
-        <Select.Option value="BYN">BYN</Select.Option>
-        <Select.Option value="USD">USD</Select.Option>
-      </Select>
-    </Space.Compact>
-  </Form.Item>
-</Col>
+                <Form.Item label="Уровень дохода">
+                  <Space.Compact style={{ width: "100%" }}>
+                    <Input style={{ width: "40%" }} placeholder="от" />
+                    <Input style={{ width: "40%" }} placeholder="до" />
+                    <Select defaultValue="BYN" style={{ width: "20%" }}>
+                      <Select.Option value="BYN">BYN</Select.Option>
+                      <Select.Option value="USD">USD</Select.Option>
+                    </Select>
+                  </Space.Compact>
+                </Form.Item>
+              </Col>
 
               {/* Work Format */}
               <Col xs={24} md={12} lg={12}>
@@ -356,7 +356,9 @@ export default function ApplicationForm() {
           Требования к кандидату
         </div>
         <Card className="rounded-[18px]">
-          <div className="text-gray-500 border-b border-gray-200 mb-3">Образование</div>
+          <div className="text-gray-500 border-b border-gray-200 mb-3">
+            Образование
+          </div>
           <Form layout="vertical">
             <Row gutter={[16, 16]} align="bottom">
               <Col xs={24} md={12} lg={8}>
@@ -426,7 +428,9 @@ export default function ApplicationForm() {
             </Row>
 
             <div className="text-primary mb-3">Добавить образование</div>
-            <div className="text-gray-500 border-b border-gray-200 mb-3">Опыт</div>
+            <div className="text-gray-500 border-b border-gray-200 mb-3">
+              Опыт
+            </div>
 
             <Row gutter={[16, 16]} align="bottom">
               <Col xs={24} md={12} lg={12}>
@@ -476,7 +480,9 @@ export default function ApplicationForm() {
             </Row>
 
             <div className="text-primary mb-3">Добавить опыт в организации</div>
-            <div className="text-gray-500 border-b border-gray-200 mb-3">Навыки и качества</div>
+            <div className="text-gray-500 border-b border-gray-200 mb-3">
+              Навыки и качества
+            </div>
             <Row gutter={[16, 16]}>
               <Col xs={12} md={12} lg={24}>
                 <Form.Item label="Личные качества" name="personalQualities">
@@ -793,8 +799,6 @@ export default function ApplicationForm() {
 Внедрение нового оборудования, химических реагентов и технологий в системах сбора и подготовки нефти и газа, и поддержания пластового давления. Составление и корректировка ежегодных заявок обособленных подразделений по материально-техническому обеспечению производства в подготовке и транспорту нефти. 
 Участие в организации выполнения, контроле и учете утвержденных мероприятий, приказов, распоряжений и других руководящих документов в области деятельности отдела"
           />
-
-          
         </Card>
       </div>
     </div>

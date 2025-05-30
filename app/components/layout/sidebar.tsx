@@ -64,6 +64,13 @@ const rawItems = [
     key: "personal-account",
     
   },
+
+   {
+    name: "Личный кабинет",
+    icon: <User />,
+    key: "job-list",
+    
+  },
 ];
 
 const Sidebar: React.FC = () => {
