@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
-import { ChevronLeft, ChevronRight, Edit, Grid, ListCollapse, Route, User, UsersRound } from "lucide-react";
+import { Briefcase, ChevronLeft, ChevronRight, Edit, Grid, ListCollapse, Route, User, UsersRound } from "lucide-react";
 import { IdcardOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -66,8 +66,8 @@ const rawItems = [
   },
 
    {
-    name: "Личный кабинет",
-    icon: <User />,
+    name: "Job List",
+    icon: <Briefcase />,
     key: "job-list",
     
   },
